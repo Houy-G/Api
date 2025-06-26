@@ -6,6 +6,7 @@ import lombok.Builder;
 public record UserDto(
         String uuid,
         String userName,
-        String email
+        String email,
+        String userRoles
 ) {
 }

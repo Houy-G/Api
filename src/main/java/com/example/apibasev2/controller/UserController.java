@@ -1,18 +1,18 @@
 package com.example.apibasev2.controller;
 
-import com.example.apibasev2.model.dto.UserRespontionDto.CreateUserDto;
-import com.example.apibasev2.model.dto.UserRespontionDto.UpdateUserDto;
-import com.example.apibasev2.model.dto.UserRespontionDto.UserDto;
+import com.example.apibasev2.model.dto.UserRespontionDto.*;
 import com.example.apibasev2.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/users/")
+@RequestMapping("/api/v2/users/")
 @RequiredArgsConstructor
 public class UserController {
+
     private final UserService userService;
     @GetMapping("/")
     public List<UserDto> getAllUser(){
@@ -33,5 +33,10 @@ public class UserController {
     @DeleteMapping("delete/{uuid}")
     public UserDto deleteUserByUuid(@PathVariable String uuid){
         return userService.deleteUserByUuid(uuid);
+    }
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDto> login(@RequestBody UserLoginDto dto) {
+        LoginResponseDto response = userService.login(dto);
+        return ResponseEntity.ok(response);
     }
 }

@@ -4,6 +4,7 @@ import com.example.apibasev2.model.User;
 import com.example.apibasev2.model.dto.UserRespontionDto.CreateUserDto;
 import com.example.apibasev2.model.dto.UserRespontionDto.UserDto;
 
+
 import java.util.UUID;
 
 public class UserMapper {
@@ -12,6 +13,7 @@ public class UserMapper {
              .uuid(user.getUuid())
              .userName(user.getUserName())
              .email(user.getEmail())
+             .userRoles(user.getUserRoles())
              .build();
     }
     public static User mapFromCreateUserDtoToUser(CreateUserDto create){
@@ -20,6 +22,7 @@ public class UserMapper {
                 .userName(create.userName())
                 .email(create.email())
                 .password(create.password())
+                .userRoles(create.userRoles())
                 .build();
     }
 }
